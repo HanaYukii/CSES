@@ -9,7 +9,7 @@ using namespace std;
 #define S second
 #define all(x) x.begin(), x.end()
 const int mod = 1e9 + 7;
-int mi[1048576];
+ll mi[1048576];
 void build(int x, int l, int r) {
     if (l == r) {
         cin >> mi[x];
@@ -20,7 +20,7 @@ void build(int x, int l, int r) {
     build(x<<1|1, mid + 1, r);
     mi[x] = min(mi[x<<1], mi[x<<1|1]);
 }
-int query(int x, int l, int r, int ql, int qr) {
+ll query(int x, int l, int r, int ql, int qr) {
     if (ql <= l && qr >= r) {
         return mi[x];
     }
@@ -35,14 +35,48 @@ int query(int x, int l, int r, int ql, int qr) {
         return min(query(x<<1,l,mid,ql,qr), query(x<<1|1,mid+1,r,ql,qr));
     }
 }
+void update(int x, int l, int r, int pos, int v) {
+    if (l == r) {
+        mi[x] = v;
+        return;
+    }
+    int mid = (l + r) >> 1;
+    if (pos <= mid) {
+        update(x<<1,l,mid,pos,v);
+    }
+    else {
+        update(x<<1|1,mid+1,r,pos,v);
+    }
+    mi[x] = min(mi[x<<1], mi[x<<1|1]);
+}
 void solve() {
     int n, m;
     cin >> n >> m;
-    build(1,1,n);
+    /*build(1,1,n);
+    while (m--) {
+        int op;
+        cin >> op;
+        if (op == 1) {
+            int x, v;
+            cin >> x >> v;
+            update(1,1,n,x,v);
+        }
+        else {
+            int l, r;
+            cin >> l >> r;
+            cout << query(1,1,n,l,r) << '\n';
+        }
+    }*/
+    vector<int>px{0};
+    for(int i = 1 ; i <= n ; i++) {
+        int x;
+        cin >> x;
+        px.pb(px.back() ^ x);
+    }
     while (m--) {
         int l, r;
         cin >> l >> r;
-        cout << query(1,1,n,l,r) << '\n';
+        cout << (px[r] ^ px[l - 1]) << '\n';
     }
 }
 int main() {
