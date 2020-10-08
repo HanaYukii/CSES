@@ -12,26 +12,29 @@ const int mod = 1e9 + 7;
 const int maxn = 200005;
  
 void solve() {
-    int n;
-    cin >> n;
-    int x = 0;
+    int n,u;
+    cin >> u >> n;
+    priority_queue<ll,vector<ll>,greater<ll>>pq;
+    ll ans = 0;
     f(n) {
-        int a;
-        cin >> a;
-        if (i & 1)
-            x ^= a;
+        ll x;
+        cin >> x;
+        pq.push(x);
     }
-    if (!x) {
-        cout << "second\n";
+    while (pq.size() > 1) {
+        ll x = pq.top();
+        pq.pop();
+        ll y = pq.top();
+        pq.pop();
+        pq.push(x+y);
+        ans += x + y;
     }
-    else {
-        cout << "first\n";
-    }
+    cout << ans << '\n';
 }
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    int c = 1;
+    int c = 0;
     int t;
     if (!c) {
         t = 1;

@@ -9,29 +9,37 @@ using namespace std;
 #define S second
 #define all(x) x.begin(), x.end()
 const int mod = 1e9 + 7;
-const int maxn = 200005;
+const int maxn = 2005;
+ 
  
 void solve() {
     int n;
     cin >> n;
-    int x = 0;
-    f(n) {
-        int a;
-        cin >> a;
-        if (i & 1)
-            x ^= a;
+    ll a[n + 5], b[n + 5];
+    vector<ll>v;
+    f1(n) {
+        cin >> a[i];
     }
-    if (!x) {
-        cout << "second\n";
+    f1(n) {
+        cin >> b[i];
     }
-    else {
-        cout << "first\n";
+    v.pb(0);
+    for (int i = 1 ; i < n ; i++) {
+        v.pb(a[i] - b[i]);
+        a[i + 1] += v.back();
     }
+    sort(all(v));
+    ll mid = v[n/2];
+    ll ans = 0;
+    for (auto &i : v) {
+        ans += abs(i - mid);
+    }
+    cout << ans << '\n';
 }
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    int c = 1;
+    int c = 0;
     int t;
     if (!c) {
         t = 1;

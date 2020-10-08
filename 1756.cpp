@@ -12,26 +12,21 @@ const int mod = 1e9 + 7;
 const int maxn = 200005;
  
 void solve() {
-    int n;
-    cin >> n;
-    int x = 0;
-    f(n) {
-        int a;
-        cin >> a;
-        if (i & 1)
-            x ^= a;
-    }
-    if (!x) {
-        cout << "second\n";
-    }
-    else {
-        cout << "first\n";
+    int n, m;
+    cin >> n >> m;
+    f(m) {
+        int x, y;
+        cin >> x >> y;
+        if (x > y) {
+            swap(x, y);
+        }
+        cout << x <<' ' << y << '\n';
     }
 }
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    int c = 1;
+    int c = 0;
     int t;
     if (!c) {
         t = 1;

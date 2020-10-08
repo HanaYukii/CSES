@@ -33,7 +33,7 @@ void pushup(int x, int l, int r,int tp) {
     else {
         s[x][tp].rs = s[x<<1|1][tp].rs;
     }
-
+ 
     s[x][tp].mx = max({s[x<<1][tp].mx,s[x<<1|1][tp].mx,s[x<<1][tp].rs + s[x<<1|1][tp].ls});
 }
 void build(int x, int l, int r) {
